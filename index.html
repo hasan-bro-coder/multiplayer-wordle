@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + TS</title>
     <link rel="stylesheet" href="/src/style.css" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,600&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <dialog id="game-over" class="game-over">
@@ -96,6 +103,18 @@
         </div>
       </div>
     </div>
-    <script type="module" src="/src/main.ts"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then((registration) => {
+            console.log("SW registered: ", registration);
+          })
+          .catch((registrationError) => {
+            console.log("SW registration failed: ", registrationError);
+          });
+      }
+    </script>
+    <script type="module" src="/src/main.ts" defer></script>
   </body>
 </html>
