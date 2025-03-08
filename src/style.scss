@@ -114,7 +114,7 @@ dialog::backdrop {
       align-items: center;
       gap: clamp(7px, calc((100vw - 90px) / 30), 10px);
       //   aspect-ratio: ;
-      width: min(calc(30vh / 3 * 10), 90vw);
+      width: min(90vh, 90vw);
       .key {
         font-family: Montserrat, "Open Sans", sans-serif;
         // font-size: calc((100vw - 90px) / 30);
