@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + TS</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <dialog id="game-over" class="game-over">
+      <h2 id="game-over-title"></h2>
+      <p id="game-over-message"></p>
+      <button id="play-again">play again</button>
+    </dialog>
+    <div class="main">
+      <h1 class="state">guess the word lil bro</h1>
+      <div class="wordle">
+        <div class="row">
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
+      </div>
+      <div class="keyboard">
+        <div class="row">
+          <button class="key" id="q">Q</button>
+          <button class="key" id="w">W</button>
+          <button class="key" id="e">E</button>
+          <button class="key" id="r">R</button>
+          <button class="key" id="t">T</button>
+          <button class="key" id="y">Y</button>
+          <button class="key" id="u">U</button>
+          <button class="key" id="i">I</button>
+          <button class="key" id="o">O</button>
+          <button class="key" id="p">P</button>
+        </div>
+        <div class="row">
+          <button class="key" id="a">A</button>
+          <button class="key" id="s">S</button>
+          <button class="key" id="d">D</button>
+          <button class="key" id="f">F</button>
+          <button class="key" id="g">G</button>
+          <button class="key" id="h">H</button>
+          <button class="key" id="j">J</button>
+          <button class="key" id="k">K</button>
+          <button class="key" id="l">L</button>
+        </div>
+        <div class="row">
+          <button class="key" id="Backspace">&lt;</button>
+          <button class="key" id="z">Z</button>
+          <button class="key" id="x">X</button>
+          <button class="key" id="c">C</button>
+          <button class="key" id="v">V</button>
+          <button class="key" id="b">B</button>
+          <button class="key" id="n">N</button>
+          <button class="key" id="m">M</button>
+          <button class="key" id="Enter">&gt;</button>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
