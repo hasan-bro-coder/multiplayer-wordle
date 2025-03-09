@@ -1,13 +1,15 @@
 * {
-  color-scheme: dark;
+  // color-scheme: dark;
   margin: 0;
   padding: 0;
+  color: white
 }
 
 body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #1c1b22;
 }
 
 dialog {
@@ -22,7 +24,7 @@ dialog {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
-  border: 2px solid white;
+  // border: 2px solid white;
 
   h2 {
     font-family: "Montserrat", "Open Sans", sans-serif;
@@ -63,9 +65,30 @@ dialog::backdrop {
   gap: 20px;
   background-color: #1c1b22;
   // outline: 1px solid white;
-  .state {
-    font-family: "Montserrat", "Open Sans", sans-serif;
-  }
+  nav{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100vw;
+    // height: ;
+    button {
+      background-color: hsl(249, 12%, 22%);
+      // border: 2px solid white;
+      border: none;
+      padding: 5px 10px;
+      font-family: "Montserrat", "Open Sans", sans-serif;
+      font-size: 1.2em;
+      border-radius: 5px;
+      cursor: pointer;
+      &:hover {
+        background-color: hsl(249, 12%, 40%);
+      }
+    }
+    .state {
+      font-family: "Montserrat", "Open Sans", sans-serif;
+      font-size: 20px;
+    }
+    }
   .wordle {
     aspect-ratio: 5/6;
     display: flex;
@@ -86,7 +109,7 @@ dialog::backdrop {
       .col {
         font-family: "Montserrat", "Open Sans", sans-serif;
         aspect-ratio: 1/1;
-        border: 2px solid white;
+        // border: 2px solid white;
         background-color: hsl(249, 12%, 22%);
         width: 100%;
         border-radius: 5px;
@@ -117,8 +140,8 @@ dialog::backdrop {
         font-family: "Montserrat", "Open Sans", sans-serif;
         // font-size: calc((100vw - 90px) / 30);
         font-size: min(20px, calc(100vw / 30));
-        outline: 2px solid white;
-        border: 2px solid rgba(255, 255, 255, 0);
+        // outline: 2px solid white;
+        border: none;
         background-color: #33313f;
         border-radius: 5px;
         padding: calc((15vh - 20px) / 9)

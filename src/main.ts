@@ -12,20 +12,36 @@ const gameOverMessage: HTMLParagraphElement | null =
   document.querySelector("#game-over-message");
 const playAgainButton: HTMLButtonElement | null =
   document.querySelector("#play-again");
+const closeButton: HTMLButtonElement | null =
+  document.querySelector("#close-it");
+const giveupButton: HTMLButtonElement | null =
+  document.querySelector("#give-up");
 
 let currentRow: number = 1;
 let currentLetter: number = 1;
 let word = "";
-import("./words").then(({ words, checkWord }) => {
+
+const installButton: HTMLButtonElement | null =
+  document.querySelector("#install");
+
+import("./words").then(async ({ words, checkWord }) => {
   // Use the words and checkWord functions here
   let mainword = words[Math.floor(Math.random() * words.length)];
+  console.log(mainword);
 
-  function press(key: string): void {
-    console.log(currentLetter, key);
-
+  let anime = (await import("animejs")).default;
+  async function press(key: string): Promise<void> {
     if (key == "Enter") {
-      console.log(word, checkWord(word));
       if (checkWord(word)) {
+        anime({
+          targets: wordle[currentRow - 1],
+          // translateX: 270,
+          rotateX: 360,
+          easing: "easeInOutSine",
+          duration: 700,
+          delay: anime.stagger(700 / 5),
+        });
+        let keys: Array<HTMLButtonElement> = [];
         for (let i = 0; i < 5; i++) {
           let color: string =
             mainword[i] == word[i]
@@ -35,20 +51,37 @@ import("./words").then(({ words, checkWord }) => {
               : "gray";
 
           wordle[currentRow - 1][i].style.color = color;
-          wordle[currentRow - 1][i].style.borderColor = color;
-          let key: HTMLDivElement | null = document.querySelector(
+          // wordle[currentRow - 1][i].style.borderColor = color;
+          let key: HTMLButtonElement | null = document.querySelector(
             ".key#" + word[i].toLowerCase()
           );
           if (key && key.style.color != "green") {
             key.style.color = color;
-            key.style.outlineColor = color;
+            keys.push(key);
+            // key.style.outlineColor = color;
           }
         }
+        anime({
+          targets: keys,
+          translateY: -10,
+          rotate: 10,
+          direction: "alternate",
+          // easing: "easeInOutSine",
+          duration: 400,
+          delay: anime.stagger(100),
+          // complete: () => resolve()
+        });
         currentRow++;
         currentLetter = 1;
         if (mainword == word) {
-          console.log("win");
-
+          anime({
+            targets: wordle.flat(),
+            scale: [
+              { value: 0.1, easing: "easeOutSine", duration: 500 },
+              { value: 1, easing: "easeInOutQuad", duration: 1200 },
+            ],
+            delay: anime.stagger(200, { grid: [5, 6], from: "center" }),
+          });
           if (!(gameOverDialog && gameOverTitle && gameOverMessage)) {
             alert(
               "Congratulations! You've guessed the word correctly! (" +
@@ -60,16 +93,18 @@ import("./words").then(({ words, checkWord }) => {
               gameOverTitle.innerText = "Congratulations!";
               gameOverMessage.innerText =
                 "You've guessed the word correctly! (" + mainword + ")";
-              console.log(gameOverDialog);
               gameOverDialog.showModal();
 
-              if (playAgainButton) {
+              if (playAgainButton && closeButton) {
                 playAgainButton.onclick = () => {
                   gameOverDialog.close();
                   location.reload(); // Restart the game by reloading the page
                 };
+                closeButton.onclick = () => {
+                  gameOverDialog.close();
+                };
               }
-            }, 200);
+            }, 2000);
           }
         } else if (currentRow > 6) {
           if (!(gameOverDialog && gameOverTitle && gameOverMessage)) {
@@ -80,10 +115,13 @@ import("./words").then(({ words, checkWord }) => {
               gameOverMessage.innerText =
                 "this was the word: (" + mainword + ")";
               gameOverDialog.showModal();
-              if (playAgainButton) {
+              if (playAgainButton && closeButton) {
                 playAgainButton.onclick = () => {
                   gameOverDialog.close();
                   location.reload(); // Restart the game by reloading the page
+                };
+                closeButton.onclick = () => {
+                  gameOverDialog.close();
                 };
               }
             }, 200);
@@ -132,24 +170,14 @@ import("./words").then(({ words, checkWord }) => {
     }
   }
 
-  // function checkWord(word: string): boolean {
-  //   return words.includes(word);
-  // }
-
-  // ---events----
-
   buttons.forEach((el, _i) => {
-    el.onclick = () => {
-      el.style.scale = "0.8";
-    };
-
-    el.onmouseup = () => {
-      el.style.scale = "1";
-    };
-    el.onmouseleave = () => {
-      el.style.scale = "1";
-    };
     el.onclick = (el) => {
+      anime({
+        targets: el?.target,
+        scale: [{ value: 0.5 }, { value: 1 }],
+        duration: 200,
+        easing: "easeInOutQuad",
+      });
       press((el?.target as HTMLButtonElement)?.id);
     };
   });
@@ -159,4 +187,49 @@ import("./words").then(({ words, checkWord }) => {
       press(e.key);
     }
   });
+
+  if (giveupButton)
+    giveupButton.onclick = () => {
+      if (!(gameOverDialog && gameOverTitle && gameOverMessage)) {
+        alert(
+          "YOU dumb lil piece of dissapointment this was the word: (" +
+            mainword +
+            ")"
+        );
+      } else {
+        gameOverTitle.innerText = "YOU dumb lil piece of dissapointment";
+        gameOverMessage.innerText = "this was the word: (" + mainword + ")";
+        gameOverDialog.showModal();
+        if (playAgainButton && closeButton) {
+          closeButton.style.display = "none";
+          playAgainButton.onclick = () => {
+            gameOverDialog.close();
+            location.reload(); // Restart the game by reloading the page
+          };
+        }
+      }
+    };
 });
+
+let installPrompt: any = null;
+
+if (installButton) {
+  window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    installPrompt = event;
+    installButton.removeAttribute("hidden");
+  });
+
+  installButton.addEventListener("click", async () => {
+    if (!installPrompt) {
+      return;
+    }
+    const result = await installPrompt.prompt();
+    console.log(`Install prompt was: ${result.outcome}`);
+    disableInAppInstallPrompt();
+  });
+  function disableInAppInstallPrompt() {
+    installPrompt = null;
+    if (installButton) installButton.setAttribute("hidden", "");
+  }
+}
