@@ -7106,8 +7106,6 @@ export const words: Array<string> = [
   "zowie",
 ];
 
-
-
 export function checkWord(word: string): boolean {
   const list = words.sort((a, b) => a.localeCompare(b));
 

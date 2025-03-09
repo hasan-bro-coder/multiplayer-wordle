@@ -1,13 +1,14 @@
 * {
-  color-scheme: dark;
   margin: 0;
   padding: 0;
+  color: white;
 }
 
 body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #1c1b22;
 }
 
 dialog {
@@ -21,7 +22,6 @@ dialog {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
-  border: 2px solid white;
 }
 dialog h2 {
   font-family: "Montserrat", "Open Sans", sans-serif;
@@ -63,8 +63,27 @@ dialog::backdrop {
   gap: 20px;
   background-color: #1c1b22;
 }
-.main .state {
+.main nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100vw;
+}
+.main nav button {
+  background-color: hsl(249, 12%, 22%);
+  border: none;
+  padding: 5px 10px;
   font-family: "Montserrat", "Open Sans", sans-serif;
+  font-size: 1.2em;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.main nav button:hover {
+  background-color: hsl(249, 12%, 40%);
+}
+.main nav .state {
+  font-family: "Montserrat", "Open Sans", sans-serif;
+  font-size: 20px;
 }
 .main .wordle {
   aspect-ratio: 5/6;
@@ -86,7 +105,6 @@ dialog::backdrop {
 .main .wordle .row .col {
   font-family: "Montserrat", "Open Sans", sans-serif;
   aspect-ratio: 1/1;
-  border: 2px solid white;
   background-color: hsl(249, 12%, 22%);
   width: 100%;
   border-radius: 5px;
@@ -114,8 +132,7 @@ dialog::backdrop {
 .main .keyboard .row .key {
   font-family: "Montserrat", "Open Sans", sans-serif;
   font-size: min(20px, 3.3333333333vw);
-  outline: 2px solid white;
-  border: 2px solid rgba(255, 255, 255, 0);
+  border: none;
   background-color: #33313f;
   border-radius: 5px;
   padding: calc((15vh - 20px) / 9) clamp(5px, (70vw - 90px) / 30, 20px);

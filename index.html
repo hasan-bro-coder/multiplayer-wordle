@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Wordle</title>
     <link rel="stylesheet" href="/src/style.css" />
     <link rel="manifest" href="/manifest.json" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,9 +19,15 @@
       <h2 id="game-over-title"></h2>
       <p id="game-over-message"></p>
       <button id="play-again">play again</button>
+      <button id="close-it">close</button>
+
     </dialog>
     <div class="main">
-      <h1 class="state">guess the word lil bro</h1>
+      <nav>
+        <button id="install" hidden>install</button>
+        <h1 class="state">guess the word lil bro</h1>
+        <button id="give-up">give up</button>
+      </nav>
       <div class="wordle">
         <div class="row">
           <div class="col"></div>
