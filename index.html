@@ -1,115 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wordle</title>
-    <link rel="stylesheet" href="/src/style.css" />
-    <link rel="manifest" href="/manifest.json" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,600&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <dialog id="game-over" class="game-over">
-      <h2 id="game-over-title"></h2>
-      <p id="game-over-message"></p>
-      <button id="play-again">play again</button>
-      <button id="close-it">close</button>
 
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wordle</title>
+  <link rel="stylesheet" href="/src/style.css" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,600&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+
+  <dialog class="main-menu" >
+      <button id="single">single player</button>
+      <button id="join">join</button>
+      <input type="text" id="join" placeholder="lobby id">
     </dialog>
-    <div class="main">
-      <nav>
-        <button id="install" hidden>install</button>
-        <h1 class="state">guess the word lil bro</h1>
-        <button id="give-up">give up</button>
-      </nav>
-      <div class="wordle">
-        <div class="row">
-          <div class="col"></div>
-          <div class="col"></div>
-          <div class="col"></div>
-          <div class="col"></div>
-          <div class="col"></div>
+    <dialog class="warning">
+      <p id="warning-message"></p>
+      <button id="close-warning">close</button>
+    </dialog>
+  <dialog id="game-over" class="game-over">
+    <h2 id="game-over-title"></h2>
+    <p id="game-over-message"></p>
+    <button id="play-again">play again</button>
+    <button id="close-it">close</button>
+  </dialog>
+
+  <div class="main">
+    <nav>
+      <button id="copy-id">copy uid</button>
+      <button id="install" hidden>install</button>
+      <h1 class="state">guess the word lil bro</h1>
+      <button id="give-up">give up</button>
+      <button id="preview" hidden>&gt;</button>
+    </nav>
+    <div class="wordle-con-con">
+      <div class="wordle-con">
+        <div class="wordle" id="main">
+          <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+          </div>
+          <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+          </div>
+          <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+          </div>
+          <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+          </div>
+          <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+          </div>
+          <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+          </div>
         </div>
-        <div class="row">
-          <div class="col"></div>
-          <div class="col"></div>
-          <div class="col"></div>
-          <div class="col"></div>
-          <div class="col"></div>
-        </div>
-        <div class="row">
-          <div class="col"></div>
-          <div class="col"></div>
-          <div class="col"></div>
-          <div class="col"></div>
-          <div class="col"></div>
-        </div>
-        <div class="row">
-          <div class="col"></div>
-          <div class="col"></div>
-          <div class="col"></div>
-          <div class="col"></div>
-          <div class="col"></div>
-        </div>
-        <div class="row">
-          <div class="col"></div>
-          <div class="col"></div>
-          <div class="col"></div>
-          <div class="col"></div>
-          <div class="col"></div>
-        </div>
-        <div class="row">
-          <div class="col"></div>
-          <div class="col"></div>
-          <div class="col"></div>
-          <div class="col"></div>
-          <div class="col"></div>
-        </div>
-      </div>
-      <div class="keyboard">
-        <div class="row">
-          <button class="key" id="q">Q</button>
-          <button class="key" id="w">W</button>
-          <button class="key" id="e">E</button>
-          <button class="key" id="r">R</button>
-          <button class="key" id="t">T</button>
-          <button class="key" id="y">Y</button>
-          <button class="key" id="u">U</button>
-          <button class="key" id="i">I</button>
-          <button class="key" id="o">O</button>
-          <button class="key" id="p">P</button>
-        </div>
-        <div class="row">
-          <button class="key" id="a">A</button>
-          <button class="key" id="s">S</button>
-          <button class="key" id="d">D</button>
-          <button class="key" id="f">F</button>
-          <button class="key" id="g">G</button>
-          <button class="key" id="h">H</button>
-          <button class="key" id="j">J</button>
-          <button class="key" id="k">K</button>
-          <button class="key" id="l">L</button>
-        </div>
-        <div class="row">
-          <button class="key" id="Backspace">&lt;</button>
-          <button class="key" id="z">Z</button>
-          <button class="key" id="x">X</button>
-          <button class="key" id="c">C</button>
-          <button class="key" id="v">V</button>
-          <button class="key" id="b">B</button>
-          <button class="key" id="n">N</button>
-          <button class="key" id="m">M</button>
-          <button class="key" id="Enter">&gt;</button>
+        <div class="wordle" id="multiplayer">
+          <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+          </div>
+          <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+          </div>
+          <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+          </div>
+          <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+          </div>
+          <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+          </div>
+          <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+          </div>
         </div>
       </div>
     </div>
-    <script>
+
+    <div class="keyboard">
+      <div class="row">
+        <button class="key" id="q">Q</button>
+        <button class="key" id="w">W</button>
+        <button class="key" id="e">E</button>
+        <button class="key" id="r">R</button>
+        <button class="key" id="t">T</button>
+        <button class="key" id="y">Y</button>
+        <button class="key" id="u">U</button>
+        <button class="key" id="i">I</button>
+        <button class="key" id="o">O</button>
+        <button class="key" id="p">P</button>
+      </div>
+      <div class="row">
+        <button class="key" id="a">A</button>
+        <button class="key" id="s">S</button>
+        <button class="key" id="d">D</button>
+        <button class="key" id="f">F</button>
+        <button class="key" id="g">G</button>
+        <button class="key" id="h">H</button>
+        <button class="key" id="j">J</button>
+        <button class="key" id="k">K</button>
+        <button class="key" id="l">L</button>
+      </div>
+      <div class="row">
+        <button class="key" id="Backspace">&lt;</button>
+        <button class="key" id="z">Z</button>
+        <button class="key" id="x">X</button>
+        <button class="key" id="c">C</button>
+        <button class="key" id="v">V</button>
+        <button class="key" id="b">B</button>
+        <button class="key" id="n">N</button>
+        <button class="key" id="m">M</button>
+        <button class="key" id="Enter">&gt;</button>
+      </div>
+    </div>
+  </div>
+  <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker
           .register("/sw.js")
@@ -121,6 +182,7 @@
           });
       }
     </script>
-    <script type="module" src="/src/main.ts" defer></script>
-  </body>
+  <script type="module" src="/src/main.ts" defer></script>
+</body>
+
 </html>
