@@ -4,6 +4,8 @@ Welcome to the **Wordle Multiplayer Game**! This is a browser-based multiplayer 
 built with **Vite** for the frontend and **TypeScript** with **Socket.IO** for the backend. 
 Players can join rooms, compete in real-time, and guess the hidden word together.
 
+![Gameplay Example](https://raw.githubusercontent.com/hasan-bro-coder/multiplayer-wordle/refs/heads/master/public/preveiw.png)
+
 ---
 
 ## Features
